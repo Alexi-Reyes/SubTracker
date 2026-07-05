@@ -1,7 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { AuthProvider, useAuth } from "../providers/AuthProvider";
+
+const queryClient = new QueryClient();
 
 function RootNavigator() {
   const { user, initialized } = useAuth();
@@ -35,8 +38,10 @@ function RootNavigator() {
 
 export default function RootLayout() {
   return (
-    <AuthProvider>
-      <RootNavigator />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RootNavigator />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
