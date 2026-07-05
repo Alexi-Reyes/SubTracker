@@ -1,4 +1,4 @@
-{
+export default {
   "expo": {
     "name": "SubTracker",
     "slug": "subtracker",
@@ -21,7 +21,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.anonymous.SubTracker",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": process.env.GOOGLE_SERVICES_JSON || "./google-services.json"
     },
     "web": {
       "output": "static",
@@ -56,4 +56,4 @@
     },
     "owner": "redtfyghjks-team"
   }
-}
+};
