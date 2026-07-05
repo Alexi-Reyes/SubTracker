@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SubTracker",
-    "slug": "SubTracker",
+    "slug": "subtracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -20,7 +20,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.SubTracker"
+      "package": "com.anonymous.SubTracker",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "output": "static",
@@ -46,6 +47,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0ff4f467-ba39-4d38-8fa0-e77fae1c7500"
+      }
+    },
+    "owner": "redtfyghjks-team"
   }
 }

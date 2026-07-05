@@ -1,12 +1,12 @@
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Platform } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { ActivityIndicator, Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { supabase } from '../../../lib/supabase';
 import { useAuth } from '../../../providers/AuthProvider';
 import { BillingCycle } from '../../../types';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function AddTracker() {
   const [name, setName] = useState('');

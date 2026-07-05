@@ -30,3 +30,17 @@ WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can delete their own trackers" 
 ON trackers FOR DELETE 
 USING (auth.uid() = user_id);
+
+create table push_tokens (
+    user_id uuid references auth.users (id) on delete cascade,
+    token text not null,
+    updated_at timestamptz default now(),
+    primary key (user_id, token)
+);
+
+alter table push_tokens enable row level security;
+
+create policy "A user can manage his push tokens"
+on push_tokens for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
