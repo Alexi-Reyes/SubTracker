@@ -44,6 +44,6 @@ yarn-error.*
 .idea/
 
 # Firebase Service Account & config
-subtracker-80b7f-firebase-adminsdk-fbsvc-0dd226bebe.json
+subtracker-80b7f-firebase-adminsdk-fbsvc-2c53e0f955.json
 firebase-key.json
 google-services.json
