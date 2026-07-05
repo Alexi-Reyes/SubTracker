@@ -9,6 +9,7 @@ CREATE TABLE trackers (
     notify_datetime TIMESTAMP WITH TIME ZONE,
     url TEXT,
     notes TEXT,
+    is_notified BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
 );
 
@@ -44,3 +45,19 @@ create policy "A user can manage his push tokens"
 on push_tokens for all
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
+
+-- cron
+
+create extension if not exists pg_net;
+
+select cron.schedule(
+  'invoke-push-notifications',
+  '* * * * *',
+  $$
+    select net.http_post(
+        url:='https://<project>.supabase.co/functions/v1/smooth-task',
+        headers:='{"Content-Type": "application/json", "Authorization": "Bearer <token>"}'::jsonb,
+        body:='{}'::jsonb
+    ) as request_id;
+  $$
+);

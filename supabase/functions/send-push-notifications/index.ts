@@ -13,6 +13,7 @@ Deno.serve(async (req) => {
     const { data: trackers, error } = await supabaseClient
       .from('trackers')
       .select('*')
+      .eq('is_notified', false)
       .gte('notify_datetime', fiveMinutesAgo)
       .lte('notify_datetime', inFiveMinutes)
 
@@ -20,6 +21,12 @@ Deno.serve(async (req) => {
     if (!trackers || trackers.length === 0) {
       return new Response(JSON.stringify({ message: "No notifications to send" }), { status: 200 })
     }
+
+    const trackerIds = trackers.map(t => t.id);
+    await supabaseClient
+      .from('trackers')
+      .update({ is_notified: true })
+      .in('id', trackerIds);
 
     const { data: tokens } = await supabaseClient
       .from("push_tokens")

@@ -55,6 +55,7 @@ export default function TrackerDetails() {
         cycle,
         next_billing_date: date.toISOString().split('T')[0],
         notify_datetime: notifyDatetime ? notifyDatetime.toISOString() : null,
+        is_notified: false,
         url: url || null,
         notes: notes || null,
       }).eq('id', id);
